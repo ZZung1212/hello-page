@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello, Mike</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      font-family: Consolas, 'Courier New', monospace;
+      color: #fff;
+    }
+    .card {
+      text-align: center;
+      max-width: 600px;
+      padding: 3rem 2.5rem;
+    }
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 0.5rem;
+    }
+    .date {
+      font-size: 1rem;
+      color: #a0aec0;
+      margin-bottom: 3rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .quote-text {
+      font-size: 1.4rem;
+      line-height: 1.7;
+      color: #e2e8f0;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .quote-author {
+      font-size: 0.95rem;
+      color: #718096;
+      font-style: normal;
+    }
+    .quote-author::before { content: '— '; }
+    button {
+      margin-top: 2rem;
+      padding: 0.6rem 1.4rem;
+      background: transparent;
+      border: 1px solid #4a5568;
+      color: #a0aec0;
+      font-family: Consolas, 'Courier New', monospace;
+      font-size: 0.85rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    button:hover { border-color: #a0aec0; color: #e2e8f0; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Hello, Mike.</h1>
+    <div class="date" id="date"></div>
+    <p class="quote-text" id="quote"></p>
+    <p class="quote-author" id="author"></p>
+    <button onclick="newQuote()">new quote</button>
+  </div>
+  <script>
+    const quotes = [
+      { text: "The secret of getting ahead is getting started.", author: "Mark Twain" },
+      { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
+      { text: "Everything you've ever wanted is on the other side of fear.", author: "George Addair" },
+      { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+      { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+      { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+      { text: "In the middle of every difficulty lies opportunity.", author: "Albert Einstein" },
+      { text: "It always seems impossible until it's done.", author: "Nelson Mandela" },
+      { text: "You miss 100% of the shots you don't take.", author: "Wayne Gretzky" },
+      { text: "Whether you think you can or you think you can't, you're right.", author: "Henry Ford" },
+      { text: "The best time to plant a tree was 20 years ago. The second best time is now.", author: "Chinese Proverb" },
+      { text: "An unexamined life is not worth living.", author: "Socrates" },
+      { text: "Spread love everywhere you go. Let no one ever come to you without leaving happier.", author: "Mother Teresa" },
+      { text: "When you reach the end of your rope, tie a knot in it and hang on.", author: "Franklin D. Roosevelt" },
+      { text: "Don't judge each day by the harvest you reap but by the seeds that you plant.", author: "Robert Louis Stevenson" },
+    ];
+
+    let lastIndex = -1;
+    function newQuote() {
+      let i;
+      do { i = Math.floor(Math.random() * quotes.length); } while (i === lastIndex);
+      lastIndex = i;
+      document.getElementById('quote').textContent = `"${quotes[i].text}"`;
+      document.getElementById('author').textContent = quotes[i].author;
+    }
+    newQuote();
+
+    const now = new Date();
+    document.getElementById('date').textContent = now.toLocaleDateString('en-US', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
+  </script>
+</body>
+</html>
